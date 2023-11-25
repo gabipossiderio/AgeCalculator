@@ -2,8 +2,8 @@ import { useState, FormEvent } from "react";
 import "./App.css";
 
 function App() {
-  const [nameInput, setNameInput] = useState("");
-  const [yearInput, setYearInput] = useState(1900);
+  const [nameInput, setNameInput] = useState<string>("");
+  const [yearInput, setYearInput] = useState<number>(2000);
   const [info, setInfo] = useState<InfoProps>();
 
   interface InfoProps{
@@ -14,13 +14,16 @@ function App() {
 
   function Calcular(event: FormEvent){
     event.preventDefault();
-    const ageCalc = (2023 - yearInput);
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+
+    const ageCalc = (currentYear - yearInput);
     setInfo({
       name: nameInput,
       year: yearInput,
       age: ageCalc,
     })
-    setYearInput(0);
+    setYearInput(2000);
   }
 
   return (
@@ -45,6 +48,7 @@ function App() {
             type="number"
             id="year"
             min="1900"
+            max="2022"
             step="1"
             required
             value={yearInput}
