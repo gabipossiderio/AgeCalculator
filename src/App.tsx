@@ -1,16 +1,16 @@
 import { useState, FormEvent } from "react";
 import "./App.css";
 
+interface UserProps{
+  name: string;
+  year: number;
+  age: number;
+}
+
 function App() {
   const [nameInput, setNameInput] = useState<string>("");
   const [yearInput, setYearInput] = useState<number>(2000);
-  const [info, setInfo] = useState<InfoProps>();
-
-  interface InfoProps{
-    name: string;
-    year: number;
-    age: number;
-  }
+  const [info, setInfo] = useState<UserProps>();
 
   function Calcular(event: FormEvent){
     event.preventDefault();
